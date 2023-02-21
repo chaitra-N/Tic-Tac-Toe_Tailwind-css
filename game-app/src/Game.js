@@ -4,7 +4,7 @@ import React from "react";
 import Square from "./Game Components/Square";
 import { useState, useEffect } from "react";
 import { WinningPatterns } from "./Game Components/WinningPaterns";
-// import Modal from "./Modal";
+import Modal from "./Game Components/Modal";
 
 function Game() {
   const [board, setBoard] = useState(["", "", "", "", "", "", "", "", ""]);
@@ -29,6 +29,17 @@ function Game() {
     }
   }, [winner]);
 
+  const checkSquare = (square) => {
+    setBoard(
+      board.map((val, index) => {
+        if (index === square && val === "") {
+          return player;
+        }
+        return val;
+      })
+    );
+  };
+
   const checkWinner = () => {
     WinningPatterns.forEach((pattern) => {
       const firstPlayer = board[pattern[0]];
@@ -50,16 +61,6 @@ function Game() {
     });
   };
 
-  const checkSquare = (square) => {
-    setBoard(
-      board.map((val, index) => {
-        if (index === square && val === "") {
-          return player;
-        }
-        return val;
-      })
-    );
-  };
   const checkGameTie = () => {
     let filled = true;
     board.forEach((sqaure) => {
@@ -83,6 +84,12 @@ function Game() {
         Tic Tac Toe with Tailwind CSS
       </h1>
       <div className=' w-screen h-screen flex justify-center items-center'>
+        <Modal
+          openModal={openModal}
+          onClose={() => setModel(false)}
+          winner={winner}
+          restartGame={restartGame}
+        />
         <div className='w-[500px] h-[500px] bg-blue-800 flex flex-col border-2 border-solid border-[black]'>
           <div className='flex-[33%] flex flex-row'>
             <Square val={board[0]} checkSquare={() => checkSquare(0)} />
@@ -91,16 +98,16 @@ function Game() {
             <Square val={board[2]} checkSquare={() => checkSquare(2)} />
           </div>
           <div className='flex-[33%] flex flex-row'>
-            <Square val={board[3]} checkSquare={() => checkSquare(0)} />
+            <Square val={board[3]} checkSquare={() => checkSquare(3)} />
 
-            <Square val={board[4]} checkSquare={() => checkSquare(1)} />
-            <Square val={board[5]} checkSquare={() => checkSquare(2)} />
+            <Square val={board[4]} checkSquare={() => checkSquare(4)} />
+            <Square val={board[5]} checkSquare={() => checkSquare(5)} />
           </div>
           <div className='flex-[33%] flex flex-row'>
-            <Square val={board[6]} checkSquare={() => checkSquare(0)} />
+            <Square val={board[6]} checkSquare={() => checkSquare(6)} />
 
-            <Square val={board[7]} checkSquare={() => checkSquare(1)} />
-            <Square val={board[8]} checkSquare={() => checkSquare(2)} />
+            <Square val={board[7]} checkSquare={() => checkSquare(7)} />
+            <Square val={board[8]} checkSquare={() => checkSquare(8)} />
           </div>
         </div>
       </div>

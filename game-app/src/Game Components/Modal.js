@@ -6,7 +6,11 @@ const Modal = ({ winner, openModal, onClose }) => {
   return (
     <div className='bg-[rgba(0,0,0,0.5)] fixed w-full h-full'>
       <div className='max-w-[600px] w-full fixed -translate-x-2/4 -translate-y-2/4 flex bg-white shadow-[0px_0px_18px_0px_rgba(0,0,0,0.75)] rounded-lg left-2/4 top-[40%]'>
-        <img src={result} alt='image' />
+        <img
+          src={result}
+          alt='image'
+          className='w-[250px] object-cover rounded-tl-lg rounded-bl-lg'
+        />
         <div className='w-full'>
           <p onClick={onClose} className='fixed right-2 top-0'>
             <FaTimes />

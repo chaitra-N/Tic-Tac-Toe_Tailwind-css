@@ -2,10 +2,13 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import Game from "./Game";
+import Modal from "./Game Components/Modal";
+import { BrowserRouter } from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
+  <BrowserRouter>
     <Game />
-  </React.StrictMode>
+    <Modal />
+  </BrowserRouter>
 );
